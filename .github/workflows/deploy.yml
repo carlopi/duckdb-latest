@@ -23,11 +23,6 @@ jobs:
           bash filter.sh
           cp -r filter build
 
-      - uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.extension-name }}.extension.wasm
-          path: build/
-
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
