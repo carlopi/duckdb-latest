@@ -5,8 +5,11 @@ permissions:
 defaults:
   run:
     shell: bash
+
 jobs:
   build-and-deploy:
+    env:
+      GH_TOKEN: ${{ github.token }}
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
