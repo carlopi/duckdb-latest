@@ -2,7 +2,7 @@
 
 Stable deployment of duckdb nightly artifacts, to be reachable at a known location.
 
-```
+```bash
 wget -q https://carlopi.github.io/duckdb-latest/duckdb_cli-osx-universal.zip
 unzip duckdb_cli-osx-universal.zip
 ./duckdb -c "PRAGMA version;"
@@ -14,7 +14,7 @@ Fully customizable to your requirements.
 
 ### One line install.sh (Linux / OSX)
 Using the stable deployment, install script for latest duckdb binaries:
-```
+```bash
 curl https://carlopi.github.io/duckdb-latest/install.sh | bash
 duckdb-latest -c "PRAGMA version;" 
 ```
