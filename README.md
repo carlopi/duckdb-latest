@@ -9,7 +9,8 @@ unzip duckdb_cli-osx-universal.zip
 ```
 
 No interactions required with GitHub Web UI or figuring out gh CLI syntax, perfect for scripts.
-Customizable to your requirements.
+
+Fully customizable to your requirements.
 
 ### One line install.sh (Linux / OSX)
 Using the stable deployment, install script for latest duckdb binaries:
@@ -22,3 +23,5 @@ duckdb-latest -c "PRAGMA version;"
 Every script invocation will trigger a download of the auto-detected package, save it to  `~/.duckdb/bin/duckdb-latest` (potentially overriding what was there), and ensures duckdb-latest is in the path so it can be then executed.
 
 Heavily inspired by installer available at https://bun.sh/
+
+
