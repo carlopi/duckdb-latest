@@ -21,7 +21,7 @@ jobs:
           mkdir build
           bash collect.sh
           bash filter.sh
-          cp -r filter/build
+          cp -r filter build
 
       - uses: actions/download-artifact@v3
         with:
