@@ -31,8 +31,11 @@ jobs:
           bash collect.sh
           bash filter.sh
           cp filter/* build
+          cp install.sh build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build # The folder the action should deploy.
+          single-commit: true
+          commit-message: 'Deploy latests packages @ duckdb/duckdb@${{ env.HASH }} :duck:'
