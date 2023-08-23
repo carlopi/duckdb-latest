@@ -158,7 +158,7 @@ fish)
             done
         } >>"$fish_config"
 
-        info "Added \"$tilde_bin_dir\" to \$PATH in \"$tilde_fish_config\""
+        info "~ Added \"$tilde_bin_dir\" to \$PATH in \"$tilde_fish_config\""
 
         refresh_command="source $tilde_fish_config"
     else
@@ -187,7 +187,7 @@ zsh)
             done
         } >>"$zsh_config"
 
-        info "Added \"$tilde_bin_dir\" to \$PATH in \"$tilde_zsh_config\""
+        info "~ Added \"$tilde_bin_dir\" to \$PATH in \"$tilde_zsh_config\""
 
         refresh_command="exec $SHELL"
     else
@@ -231,7 +231,7 @@ bash)
                 done
             } >>"$bash_config"
 
-            info "Added \"$tilde_bin_dir\" to \$PATH in \"$tilde_bash_config\""
+            info "~ Added \"$tilde_bin_dir\" to \$PATH in \"$tilde_bash_config\""
 
             refresh_command="source $bash_config"
             set_manually=false
@@ -254,7 +254,7 @@ bash)
     ;;
 esac
 echo
-info "Running demo:"
+info "~ Running demo:"
 "$exe" --echo -c "SELECT 'Quack from DuckDB!' AS welcome;"
 "$exe" --echo -c "PRAGMA version;"
 echo
