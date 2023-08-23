@@ -1,6 +1,8 @@
 name: Collect binaries and Deploy to GitHub Pages
 
 on:
+  schedule:
+    - cron: '0 */6 * * *'
   workflow_dispatch:
     inputs:
        days:
