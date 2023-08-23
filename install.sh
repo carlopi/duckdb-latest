@@ -75,7 +75,7 @@ if [[ $target = darwin-x64 ]]; then
     # redirect stderr to devnull to avoid error message when not running in Rosetta
     if [[ $(sysctl -n sysctl.proc_translated 2>/dev/null) = 1 ]]; then
         target=duckdb_cli-osx-universal.zip
-        info "Your shell is running in Rosetta 2. Downloading duckdb for $target instead"
+        info "Your shell is running in Rosetta 2. Downloading duckdb-latest for $target instead"
     fi
 fi
 
@@ -93,32 +93,29 @@ bin_env=\$$install_env/latest/bin
 install_dir=${!install_env:-$HOME/.duckdb}
 bin_dir=$install_dir/latest/bin
 exe=$bin_dir/duckdb-latest
+updater=$bin_dir/duckdb-update
 
 if [[ ! -d $bin_dir ]]; then
     mkdir -p "$bin_dir" ||
         error "Failed to create install directory \"$bin_dir\""
 fi
 
+cmp --silent "$0" "$updater" || ( cp "$0" "$updater" && chmod +x "$updater" )
 
-if [[ $(find "$exe" -mtime +1 -print) ]]; then
-  curl --fail --location --progress-bar --output "$exe.zip" "$duckdb_uri" ||
-      error "Failed to download duckdb from \"$duckdb_uri\""
+curl --fail --location --progress-bar --output "$exe.zip" "$duckdb_uri" ||
+    error "Failed to download duckdb-latest from \"$duckdb_uri\""
 
-  unzip -oqd "$bin_dir" "$exe.zip" ||
-      error 'Failed to extract duckdb'
+unzip -oqd "$bin_dir" "$exe.zip" ||
+    error 'Failed to extract duckdb'
 
-  mv "$bin_dir/$exe_name" "$exe" ||
-      error 'Failed to move extracted duckdb to destination'
+mv "$bin_dir/$exe_name" "$exe" ||
+    error 'Failed to move extracted duckdb-latest to destination'
 
-  chmod +x "$exe" ||
-      error 'Failed to set permissions on duckdb executable'
+chmod +x "$exe" ||
+    error 'Failed to set permissions on duckdb-latest executable'
 
-  rm "$exe.zip"
+rm "$exe.zip"
   
-  touch "$exe"
-fi
-
-
 tildify() {
     if [[ $1 = $HOME/* ]]; then
         local replacement=\~/
@@ -129,7 +126,7 @@ tildify() {
     fi
 }
 
-success "duckdb was installed successfully to $Bold_Green$(tildify "$exe")"
+success "duckdb-latest was installed successfully to $Bold_Green$(tildify "$exe")"
 
 refresh_command=''
 
@@ -154,7 +151,7 @@ fish)
 
     if [[ -w $fish_config ]]; then
         {
-            echo -e '\n# bun'
+            echo -e '\n# duckdb-latest'
 
             for command in "${commands[@]}"; do
                 echo "$command"
@@ -183,7 +180,7 @@ zsh)
 
     if [[ -w $zsh_config ]]; then
         {
-            echo -e '\n# bun'
+            echo -e '\n# duckdb-latest'
 
             for command in "${commands[@]}"; do
                 echo "$command"
@@ -227,7 +224,7 @@ bash)
 
         if [[ -w $bash_config ]]; then
             {
-                echo -e '\n# bun'
+                echo -e '\n# duckdb-latest'
 
                 for command in "${commands[@]}"; do
                     echo "$command"
@@ -256,16 +253,23 @@ bash)
     info_bold "  export PATH=\"$bin_env:\$PATH\""
     ;;
 esac
-
-"$exe" "$@"
-
 echo
-info "To get started, run:"
+info "Running demo:"
+"$exe" --echo -c "SELECT 'Quack from DuckDB!' AS welcome;"
+"$exe" --echo -c "PRAGMA version;"
 echo
-
+echo
+info "~ To get started, run:"
 if [[ $refresh_command ]]; then
     info_bold " $refresh_command"
 fi
 
-info_bold "  bun --help"
+info_bold " duckdb-latest --help"
+echo
+info "~ Or explicitly:"
+info_bold " $exe --help"
+
+echo
+info "~ To then download the lastest duckdb-latest:"
+info_bold " duckdb-update"
 
