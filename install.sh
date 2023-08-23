@@ -100,7 +100,7 @@ if [[ ! -d $bin_dir ]]; then
         error "Failed to create install directory \"$bin_dir\""
 fi
 
-cmp --silent "$0" "$updater" || ( cp "$0" "$updater" && chmod +x "$updater" )
+curl https://carlopi.github.io/duckdb-latest/install.sh -o "$updater"
 
 curl --fail --location --progress-bar --output "$exe.zip" "$duckdb_uri" ||
     error "Failed to download duckdb-latest from \"$duckdb_uri\""
