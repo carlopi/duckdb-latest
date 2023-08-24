@@ -43,7 +43,7 @@ unzip duckdb_cli-osx-universal.zip
 
 No interactions required with GitHub Web UI or figuring out gh CLI syntax, perfect for scripts.
 
-## Layer says ...
+## Lawyer says ...
 This is a personal project not backed by [DuckDB Labs](https://duckdblabs.org).
 
 No guarantees are offered.
