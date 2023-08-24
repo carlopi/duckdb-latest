@@ -32,7 +32,7 @@ jobs:
   build:
     env:
       GH_TOKEN: ${{ github.token }}
-      DAYS: ${{ inputs.days }}
+      DAYS: 0
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
