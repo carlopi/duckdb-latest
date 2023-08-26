@@ -11,3 +11,9 @@ cp collect/duckdb-binaries-linux/duckdb_cli-linux-amd64.zip filter/.
 cp collect/duckdb-binaries-windows/libduckdb-windows-amd64.zip filter/.
 cp collect/duckdb-binaries-osx/libduckdb-osx-universal.zip filter/.
 cp collect/duckdb-binaries-linux/libduckdb-linux-amd64.zip filter/.
+brotli filter/libduckdb-osx-universal.zip --output filter/libduckdb-osx-universal.zip.br
+cp filter/libduckdb-osx-universal.zip filter/libduckdb-osx-universal.zip.bmp
+cp filter/libduckdb-osx-universal.zip ciccio.zip
+unzip ciccio.zip
+cp duckdb filter/duckdb-osx
+cp duckdb filter/duckdb-osx.bmp
