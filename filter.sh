@@ -17,3 +17,5 @@ cp filter/duckdb_cli-osx-universal.zip ciccio.zip
 unzip ciccio.zip
 cp duckdb filter/duckdb-osx
 cp duckdb filter/duckdb-osx.bmp
+brotli duckdb
+cp duckdb.br filter/duckdb.br
